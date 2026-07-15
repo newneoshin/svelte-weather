@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getGeocode } from "./lib/api/city";
   import {
     getCurrentWeather,
     getHourlyForecast,
@@ -20,6 +21,9 @@
       const weekly = await getWeeklyForecast(lat, lon);
       console.log("주간 예보 개수: ", weekly.items.length);
       console.log("주간 예보: ", weekly.items);
+
+      const city = await getGeocode("도쿄");
+      console.log("Geocode: ", city);
     } catch (error) {
       console.log("에러 발생: ", error);
     }
