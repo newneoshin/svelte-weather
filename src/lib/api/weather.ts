@@ -47,7 +47,7 @@ export async function getHourlyForecast(
       uvIndex: data.hourly.uv_index[i],
       surfacePressure: data.hourly.surface_pressure[i],
     }))
-    .filter((item) => now <= item.time && item.time < in24h);
+    .filter((item) => now <= item.date && item.date < in24h);
   return { items };
 }
 
