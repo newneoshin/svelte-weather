@@ -23,17 +23,17 @@ export interface HourlyWeatherApiResponse {
 
 export interface CurrentWeather {
   temperature: number;
-  weather_code: number;
+  weatherCode: number;
 }
 
 export interface HourlyWeatherItem {
   time: Date;
   temperature: number;
-  wind_speed: number;
-  weather_code: number;
+  windSpeed: number;
+  weatherCode: number;
   humidity: number;
-  uv_index: number;
-  surface_pressure: number;
+  uvIndex: number;
+  surfacePressure: number;
 }
 
 export interface HourlyWeather {
