@@ -40,7 +40,7 @@ export interface CurrentWeather {
 }
 
 export interface HourlyForecastItem {
-  time: Date;
+  date: Date;
   temperature: number;
   windSpeed: number;
   weatherCode: number;
@@ -54,7 +54,7 @@ export interface HourlyForecast {
 }
 
 export interface WeeklyForecastItem {
-  time: Date;
+  date: Date;
   temperatureMax: number;
   temperatureMin: number;
   weatherCode: number;

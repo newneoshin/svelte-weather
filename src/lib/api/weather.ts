@@ -39,7 +39,7 @@ export async function getHourlyForecast(
 
   const items: HourlyForecastItem[] = data.hourly.time
     .map((time, i) => ({
-      time: new Date(time),
+      date: new Date(time),
       temperature: data.hourly.temperature_2m[i],
       windSpeed: data.hourly.wind_speed_2m[i],
       weatherCode: data.hourly.weather_code[i],
@@ -61,7 +61,7 @@ export async function getWeeklyForecast(
 
   const data: WeeklyForecastApiResponse = await response.json();
   const items: WeeklyForecastItem[] = data.daily.time.map((time, i) => ({
-    time: new Date(time),
+    date: new Date(time),
     temperatureMax: data.daily.temperature_2m_max[i],
     temperatureMin: data.daily.temperature_2m_min[i],
     weatherCode: data.daily.weather_code[i],
