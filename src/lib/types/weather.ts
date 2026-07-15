@@ -7,7 +7,7 @@ export interface CurrentWeatherApiResponse {
   };
 }
 
-export interface HourlyWeatherApiResponse {
+export interface HourlyForecastApiResponse {
   hourly: {
     time: string[];
     temperature_2m: number[];
@@ -19,7 +19,7 @@ export interface HourlyWeatherApiResponse {
   };
 }
 
-export interface WeeklyWeatherApiResponse {
+export interface WeeklyForecastApiResponse {
   daily: {
     time: string[];
     weather_code: number[];
@@ -39,7 +39,7 @@ export interface CurrentWeather {
   weatherCode: number;
 }
 
-export interface HourlyWeatherItem {
+export interface HourlyForecastItem {
   time: Date;
   temperature: number;
   windSpeed: number;
@@ -49,11 +49,11 @@ export interface HourlyWeatherItem {
   surfacePressure: number;
 }
 
-export interface HourlyWeather {
-  items: HourlyWeatherItem[];
+export interface HourlyForecast {
+  items: HourlyForecastItem[];
 }
 
-export interface WeeklyWeatherItem {
+export interface WeeklyForecastItem {
   time: Date;
   temperatureMax: number;
   temperatureMin: number;
@@ -64,6 +64,6 @@ export interface WeeklyWeatherItem {
   windSpeed: number;
 }
 
-export interface WeeklyWeather {
-  items: WeeklyWeatherItem[];
+export interface WeeklyForecast {
+  items: WeeklyForecastItem[];
 }
