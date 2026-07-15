@@ -41,7 +41,7 @@ export async function getHourlyForecast(
     .map((time, i) => ({
       date: new Date(time),
       temperature: data.hourly.temperature_2m[i],
-      windSpeed: data.hourly.wind_speed_2m[i],
+      windSpeed: data.hourly.wind_speed_10m[i],
       weatherCode: data.hourly.weather_code[i],
       humidity: data.hourly.relative_humidity_2m[i],
       uvIndex: data.hourly.uv_index[i],
