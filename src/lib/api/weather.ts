@@ -4,6 +4,9 @@ import type {
   HourlyForecast,
   HourlyForecastApiResponse,
   HourlyForecastItem,
+  WeeklyForecast,
+  WeeklyForecastApiResponse,
+  WeeklyForecastItem,
 } from "../types/weather";
 
 export async function getCurrentWeather(
@@ -45,5 +48,27 @@ export async function getHourlyForecast(
       surfacePressure: data.hourly.surface_pressure[i],
     }))
     .filter((item) => item.time <= now && now < in24h);
+  return { items };
+}
+
+export async function getWeeklyForecast(
+  lat: number,
+  lon: number,
+): Promise<WeeklyForecast> {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_min,temperature_2m_max,uv_index_max,surface_pressure_mean,wind_speed_10m_mean,relative_humidity_2m_mean&timezone=GMT`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`주간 예보 조회 실패: ${response.status}`);
+
+  const data: WeeklyForecastApiResponse = await response.json();
+  const items: WeeklyForecastItem[] = data.daily.time.map((time, i) => ({
+    time: new Date(time),
+    temperatureMax: data.daily.temperature_2m_max[i],
+    temperatureMin: data.daily.temperature_2m_min[i],
+    weatherCode: data.daily.weather_code[i],
+    uvIndex: data.daily.uv_index_max[i],
+    surfacePressure: data.daily.surface_pressure_mean[i],
+    humidity: data.daily.relative_humidity_2m_mean[i],
+    windSpeed: data.daily.wind_speed_10m_mean[i],
+  }));
   return { items };
 }
