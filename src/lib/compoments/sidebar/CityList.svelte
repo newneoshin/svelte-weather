@@ -18,8 +18,9 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 8px;
+    padding: 0;
     list-style: none;
+    margin: 0;
   }
 
   .empty-message {
