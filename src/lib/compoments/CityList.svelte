@@ -5,10 +5,10 @@
 
 <ul class="city-list">
   {#if cities.length === 0}
-    <p class="empty-message">검색해 도시를 추가해보세요.</p>
+    <li class="empty-message">검색해 도시를 추가해보세요.</li>
   {:else}
     {#each cities as city (city.id)}
-      <CityListItem {city} />
+      <li><CityListItem {city} /></li>
     {/each}
   {/if}
 </ul>
@@ -19,6 +19,7 @@
     flex-direction: column;
     gap: 8px;
     padding: 8px;
+    list-style: none;
   }
 
   .empty-message {
