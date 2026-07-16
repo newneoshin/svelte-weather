@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { City } from "../types/city";
-  import type { CurrentWeather } from "../types/weather";
-  import { getCurrentWeather } from "../api/weather";
-  import { selection, selectCity } from "../state/cities.svelte";
+  import type { City } from "../../types/city";
+  import type { CurrentWeather } from "../../types/weather";
+  import { getCurrentWeather } from "../../api/weather";
+  import { selection, selectCity } from "../../state/cities.svelte";
 
   let { city }: { city: City } = $props();
   let currentWeather = $state<CurrentWeather | null>(null);

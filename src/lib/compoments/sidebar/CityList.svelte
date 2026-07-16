@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { cities } from "../state/cities.svelte";
+  import { cities } from "../../state/cities.svelte";
   import CityListItem from "./CityListItem.svelte";
 </script>
 
