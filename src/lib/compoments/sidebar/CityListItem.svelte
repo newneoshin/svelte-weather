@@ -64,8 +64,7 @@
 
   .city-item:focus-visible,
   .city-item:hover {
-    outline: 2px solid oklch(0.6 0.15 235);
-    outline-offset: 2px;
+    box-shadow: inset 0 0 0 2px oklch(0.6 0.15 235);
   }
 
   .city-info {

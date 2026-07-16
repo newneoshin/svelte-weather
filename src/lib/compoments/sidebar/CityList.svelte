@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0;
+    padding: 4px;
     list-style: none;
     margin: 0;
   }
