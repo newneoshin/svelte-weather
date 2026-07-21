@@ -8,6 +8,7 @@
   } from "../../state/cities.svelte";
 
   import Header from "./Header.svelte";
+  import CurrentWeatherSection from "./CurrentWeatherSection.svelte";
 
   const city = $derived(
     cities.find((c) => {
@@ -20,19 +21,22 @@
   const weeklyForecast = $derived(city ? weeklyForecastMap[city.id] : null);
 </script>
 
-{#if city === null}
-  <span>도시를 선택해주세요.</span>
-{:else if !weeklyForecast || !currentWeather}
-  <span>불러오는 중입니다...</span>
-{:else}
-  <Header {city} {currentWeather} {weeklyForecast} />
-  <div>
-    <span>주간 예보</span>
-    {#each weeklyForecast.items as item}
-      <span>날짜: {item.date} </span>
-      <span>날씨: {item.weatherCode} </span>
-      <span>최고: {item.temperatureMax} </span>
-      <span>최저: {item.temperatureMin} </span>
-    {/each}
-  </div>
-{/if}
+<div class="panel-layout">
+  {#if city === null}
+    <span>도시를 선택해주세요.</span>
+  {:else if !weeklyForecast || !currentWeather || !hourlyForecast}
+    <span>불러오는 중입니다...</span>
+  {:else}
+    <Header {city} {currentWeather} {weeklyForecast} />
+    <div>
+      <CurrentWeatherSection {hourlyForecast} />
+    </div>
+  {/if}
+</div>
+
+<style>
+  .panel-layout {
+    background-color: oklch(0.95 0.003 260);
+    padding: 32px 48px;
+  }
+</style>
