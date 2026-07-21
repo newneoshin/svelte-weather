@@ -1,18 +1,14 @@
 <script lang="ts">
   import type { City } from "../../types/city";
-  import type { CurrentWeather } from "../../types/weather";
-  import { getCurrentWeather } from "../../api/weather";
-  import { selection, selectCity } from "../../state/cities.svelte";
+  import {
+    selection,
+    selectCity,
+    currentWeatherMap,
+  } from "../../state/cities.svelte";
 
   let { city }: { city: City } = $props();
-  let currentWeather = $state<CurrentWeather | null>(null);
+  let currentWeather = $derived(currentWeatherMap[city.id]);
   let isSelected = $derived(city.id === selection.cityId);
-
-  $effect(() => {
-    getCurrentWeather(city.lat, city.lon).then((weather) => {
-      currentWeather = weather;
-    });
-  });
 </script>
 
 <button
@@ -28,9 +24,13 @@
       <span class="weather-status">{currentWeather?.weatherCode}</span>
     </div>
   </div>
-  <span class="city-temperature">
-    {currentWeather?.temperature}°C
-  </span>
+  {#if currentWeather}
+    <span class="city-temperature">
+      {currentWeather?.temperature}°C
+    </span>
+  {:else}
+    <span>불러오는 중...</span>
+  {/if}
 </button>
 
 <style>

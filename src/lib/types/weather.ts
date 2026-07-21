@@ -2,8 +2,12 @@
 
 export interface CurrentWeatherApiResponse {
   current: {
+    time: string;
     temperature_2m: number;
     weather_code: number;
+    relative_humidity_2m: number;
+    wind_speed_10m: number;
+    surface_pressure: number;
   };
 }
 
@@ -35,8 +39,12 @@ export interface WeeklyForecastApiResponse {
 // Processed
 
 export interface CurrentWeather {
+  date: Date;
   temperature: number;
   weatherCode: number;
+  windSpeed: number;
+  humidity: number;
+  surfacePressure: number;
 }
 
 export interface HourlyForecastItem {
@@ -66,4 +74,10 @@ export interface WeeklyForecastItem {
 
 export interface WeeklyForecast {
   items: WeeklyForecastItem[];
+}
+
+export interface WeatherBundle {
+  current: CurrentWeather;
+  hourly: HourlyForecast;
+  weekly: WeeklyForecast;
 }
