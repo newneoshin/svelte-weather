@@ -7,6 +7,8 @@
     weeklyForecastMap,
   } from "../../state/cities.svelte";
 
+  import Header from "./Header.svelte";
+
   const city = $derived(
     cities.find((c) => {
       return c.id == selection.cityId;
@@ -23,11 +25,7 @@
 {:else if !weeklyForecast}
   <span>불러오는 중입니다...</span>
 {:else}
-  <div>
-    <span>{city?.name}</span>
-    <span>최고: {weeklyForecast.items[0].temperatureMax}</span>
-    <span>최저: {weeklyForecast.items[0].temperatureMin}</span>
-  </div>
+  <Header {city} {weeklyForecast} />
   <div>
     <span>주간 예보</span>
     {#each weeklyForecast.items as item}
