@@ -22,10 +22,10 @@
 
 {#if city === null}
   <span>도시를 선택해주세요.</span>
-{:else if !weeklyForecast}
+{:else if !weeklyForecast || !currentWeather}
   <span>불러오는 중입니다...</span>
 {:else}
-  <Header {city} {weeklyForecast} />
+  <Header {city} {currentWeather} {weeklyForecast} />
   <div>
     <span>주간 예보</span>
     {#each weeklyForecast.items as item}

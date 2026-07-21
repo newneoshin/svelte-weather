@@ -20,6 +20,7 @@ export async function getCurrentWeather(
 
   const data: CurrentWeatherApiResponse = await response.json();
   return {
+    date: data.current.time,
     temperature: data.current.temperature_2m,
     weatherCode: data.current.weather_code,
   };

@@ -2,6 +2,7 @@
 
 export interface CurrentWeatherApiResponse {
   current: {
+    time: Date;
     temperature_2m: number;
     weather_code: number;
   };
@@ -35,6 +36,7 @@ export interface WeeklyForecastApiResponse {
 // Processed
 
 export interface CurrentWeather {
+  date: Date;
   temperature: number;
   weatherCode: number;
 }

@@ -1,18 +1,20 @@
 <script lang="ts">
-  import type { WeeklyForecast } from "../../types/weather";
+  import type { CurrentWeather, WeeklyForecast } from "../../types/weather";
   import type { City } from "../../types/city";
   const {
     city,
+    currentWeather,
     weeklyForecast,
   }: {
     city: City;
+    currentWeather: CurrentWeather;
     weeklyForecast: WeeklyForecast;
   } = $props();
 </script>
 
 <div class="header-layout">
   <div class="city-layout">
-    <span class="updated-time">방금 업데이트 됨</span>
+    <span class="updated-time">{currentWeather.date}</span>
     <span class="city-title">{city.name}</span>
   </div>
   <div class="temperature-content">
@@ -31,7 +33,7 @@
   .city-layout {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
   .updated-time {
