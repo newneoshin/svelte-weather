@@ -29,7 +29,7 @@
   {:else}
     <Header {city} {currentWeather} {weeklyForecast} />
     <div>
-      <CurrentWeatherSection {hourlyForecast} />
+      <CurrentWeatherSection {currentWeather} {hourlyForecast} />
     </div>
   {/if}
 </div>

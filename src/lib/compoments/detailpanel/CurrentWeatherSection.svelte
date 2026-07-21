@@ -1,25 +1,29 @@
 <script lang="ts">
-  import type { HourlyForecast } from "../../types/weather";
+  import type { CurrentWeather, HourlyForecast } from "../../types/weather";
   import WeatherStat from "../common/WeatherStat.svelte";
 
-  const { hourlyForecast }: { hourlyForecast: HourlyForecast } = $props();
+  const {
+    currentWeather,
+    hourlyForecast,
+  }: { currentWeather: CurrentWeather; hourlyForecast: HourlyForecast } =
+    $props();
   const weatherStats = $derived([
-    { label: "습도", value: `${hourlyForecast.items[0].humidity}%` },
-    { label: "풍속", value: `${hourlyForecast.items[0].windSpeed}km/h` },
-    { label: "기압", value: `${hourlyForecast.items[0].surfacePressure}hPa` },
+    { label: "습도", value: `${currentWeather.humidity}%` },
+    { label: "풍속", value: `${currentWeather.windSpeed}km/h` },
+    { label: "기압", value: `${currentWeather.surfacePressure}hPa` },
     { label: "자외선", value: `${hourlyForecast.items[0].uvIndex}` },
   ]);
 </script>
 
 <div class="section-layout">
   <div class="current-weather-summary">
-    {hourlyForecast.items[0].weatherCode}
+    {currentWeather.weatherCode}
     <div class="current-weather-text">
       <span class="current-weather-temperature">
-        {hourlyForecast.items[0].temperature}
+        {currentWeather.temperature}
       </span>
       <span class="current-weather-code">
-        {hourlyForecast.items[0].weatherCode}
+        {currentWeather.weatherCode}
       </span>
     </div>
   </div>
