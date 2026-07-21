@@ -7,6 +7,7 @@ import type {
   WeeklyForecast,
   WeeklyForecastApiResponse,
   WeeklyForecastItem,
+  WeatherBundle,
 } from "../types/weather";
 
 export async function getCurrentWeather(
@@ -71,4 +72,16 @@ export async function getWeeklyForecast(
     windSpeed: data.daily.wind_speed_10m_mean[i],
   }));
   return { items };
+}
+
+export async function getAllWeather(
+  lat: number,
+  lon: number,
+): Promise<WeatherBundle> {
+  const [current, hourly, weekly] = await Promise.all([
+    getCurrentWeather(lat, lon),
+    getHourlyForecast(lat, lon),
+    getWeeklyForecast(lat, lon),
+  ]);
+  return { current, hourly, weekly };
 }

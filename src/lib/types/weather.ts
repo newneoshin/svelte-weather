@@ -67,3 +67,9 @@ export interface WeeklyForecastItem {
 export interface WeeklyForecast {
   items: WeeklyForecastItem[];
 }
+
+export interface WeatherBundle {
+  current: CurrentWeather;
+  hourly: HourlyForecast;
+  weekly: WeeklyForecast;
+}
