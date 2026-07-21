@@ -32,6 +32,7 @@
     gap: 16px;
     border-right: 1px solid oklch(0.9 0.003 260);
     height: 100vh;
+    background-color: white;
   }
 
   .sidebar-text {
