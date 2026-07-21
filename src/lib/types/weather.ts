@@ -2,7 +2,7 @@
 
 export interface CurrentWeatherApiResponse {
   current: {
-    time: Date;
+    time: string;
     temperature_2m: number;
     weather_code: number;
     relative_humidity_2m: number;

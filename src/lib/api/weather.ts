@@ -14,13 +14,13 @@ export async function getCurrentWeather(
   lat: number,
   lon: number,
 ): Promise<CurrentWeather> {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,surface_pressure,relative_humidity_2m`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,surface_pressure,relative_humidity_2m&timezone=GMT`;
   const response = await fetch(url);
   if (!response.ok) throw new Error(`현재 날씨 조회 실패 ${response.status}`);
 
   const data: CurrentWeatherApiResponse = await response.json();
   return {
-    date: data.current.time,
+    date: new Date(data.current.time),
     temperature: data.current.temperature_2m,
     weatherCode: data.current.weather_code,
     windSpeed: data.current.wind_speed_10m,
