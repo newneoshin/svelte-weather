@@ -5,6 +5,8 @@
     selectCity,
     currentWeatherMap,
   } from "../../state/cities.svelte";
+  import WeatherIcon from "../common/WeatherIcon.svelte";
+  import { getWeatherText } from "../../utils/weatherCode";
 
   let { city }: { city: City } = $props();
   let currentWeather = $derived(currentWeatherMap[city.id]);
@@ -17,16 +19,18 @@
     selectCity(city);
   }}
 >
-  <div class="city-info">
-    <div class="weather-icon"></div>
-    <div class="city-text">
-      <span class="city-name">{city.name}</span>
-      <span class="weather-status">{currentWeather?.weatherCode}</span>
-    </div>
-  </div>
   {#if currentWeather}
+    <div class="city-info">
+      <WeatherIcon weatherCode={currentWeather.weatherCode} size={38} />
+      <div class="city-text">
+        <span class="city-name">{city.name}</span>
+        <span class="weather-status"
+          >{getWeatherText(currentWeather?.weatherCode)}</span
+        >
+      </div>
+    </div>
     <span class="city-temperature">
-      {currentWeather?.temperature}°C
+      {currentWeather?.temperature}°
     </span>
   {:else}
     <span>불러오는 중...</span>
@@ -34,13 +38,6 @@
 </button>
 
 <style>
-  .weather-icon {
-    background-color: skyblue;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-  }
-
   .city-item {
     display: flex;
     justify-content: space-between;

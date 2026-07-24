@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { CurrentWeather, HourlyForecast } from "../../types/weather";
   import WeatherStat from "../common/WeatherStat.svelte";
+  import WeatherIcon from "../common/WeatherIcon.svelte";
+  import { getWeatherText } from "../../utils/weatherCode";
 
   const {
     currentWeather,
@@ -17,13 +19,13 @@
 
 <div class="section-layout">
   <div class="current-weather-summary">
-    {currentWeather.weatherCode}
+    <WeatherIcon weatherCode={currentWeather.weatherCode} size={96} />
     <div class="current-weather-text">
       <span class="current-weather-temperature">
-        {currentWeather.temperature}
+        {currentWeather.temperature}°
       </span>
       <span class="current-weather-code">
-        {currentWeather.weatherCode}
+        {getWeatherText(currentWeather.weatherCode)}
       </span>
     </div>
   </div>
