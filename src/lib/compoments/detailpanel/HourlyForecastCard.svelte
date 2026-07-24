@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { HourlyForecastItem } from "../../types/weather";
+  import WeatherIcon from "../common/WeatherIcon.svelte";
 
   let {
     item,
@@ -14,7 +15,7 @@
   <span class="hourly-time">
     {isNow ? "지금" : `${item.date.getHours()}시`}
   </span>
-  <span class="hourly-icon">{item.weatherCode}</span>
+  <WeatherIcon weatherCode={item.weatherCode} size={34} />
   <span class="hourly-temp"> {Math.round(item.temperature)}°</span>
 </div>
 
