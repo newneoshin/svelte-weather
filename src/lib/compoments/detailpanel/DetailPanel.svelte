@@ -9,6 +9,7 @@
 
   import Header from "./Header.svelte";
   import CurrentWeatherSection from "./CurrentWeatherSection.svelte";
+  import HourlyForecastSection from "./HourlyForecastSection.svelte";
 
   const city = $derived(
     cities.find((c) => {
@@ -28,15 +29,17 @@
     <span>불러오는 중입니다...</span>
   {:else}
     <Header {city} {currentWeather} {weeklyForecast} />
-    <div>
-      <CurrentWeatherSection {currentWeather} {hourlyForecast} />
-    </div>
+    <CurrentWeatherSection {currentWeather} {hourlyForecast} />
+    <HourlyForecastSection {hourlyForecast} />
   {/if}
 </div>
 
 <style>
   .panel-layout {
+    display: flex;
+    flex-direction: column;
     background-color: oklch(0.95 0.003 260);
     padding: 32px 48px;
+    gap: 32px;
   }
 </style>
